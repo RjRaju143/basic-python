@@ -1,35 +1,24 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_COMPOSE_VERSION = '1.27.4'
+    }
+
     stages {
-        stage('Setup python') {
+        stage('Checkout'){
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build and Push Docker Image'){
             steps {
                 script {
-                    sh '''
-                    chmod +x envsetup.sh
-                    ./envsetup.sh
-                    '''
+                    sh 'sudo docker-compose up --build'
                 }
             }
         }
-        stage('Gunicorn setup') {
-            steps {
-                script {
-                    sh '''
-                    chmod +x gunicorn.sh
-                    ./gunicorn.sh
-                    '''
-                }
-            }
-        }
-        stage('nginx setup') {
-            steps {
-                script {
-                    sh '''
-                    chmod +x nginx.sh
-                    ./nginx.sh
-                    '''
-                }
-            }
-        }
+
+        // stage('')
     }
 }
