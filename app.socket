@@ -1,0 +1,9 @@
+[Unit]
+Description=app socket
+
+[Socket]
+ListenStream=/run/app.sock
+SocketUser=www-data
+
+[Install]
+WantedBy=sockets.target
