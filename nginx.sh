@@ -7,6 +7,7 @@ sudo ln -s /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 
 sudo nginx -t
 
+sudo systemctl stop nginx
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
